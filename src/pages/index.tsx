@@ -1,6 +1,6 @@
 import { Box } from '@mui/system';
 import * as React from 'react';
-import { ButtonTest } from '../components/Button';
+import { Categories } from '../components/Categories';
 import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
@@ -10,8 +10,9 @@ export default function Index() {
     <PaperComponent>
       <Navbar />
       <Layout title="home">
+        <Categories />
         <Box mt={20}>
-          ahjshdhfd
+          Lorem ipsum dolor sit amet.
         </Box>
       </Layout>
     </PaperComponent>

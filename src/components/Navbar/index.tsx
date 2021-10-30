@@ -9,7 +9,7 @@ import SellIcon from '@mui/icons-material/Sell';
 export const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBarStyled position="fixed">
+      <AppBarStyled position="sticky">
         <Toolbar>
           <Hidden mdUp>
             <IconButton
