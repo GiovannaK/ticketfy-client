@@ -14,12 +14,15 @@
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
+    "@swiper/core": "^0.0.21",
+    "@types/swiper": "^5.4.3",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-is": "latest",
-    "styled-components": "latest"
+    "styled-components": "latest",
+    "swiper": "^7.2.0"
   },
   "devDependencies": {
     "@types/react": "latest",
