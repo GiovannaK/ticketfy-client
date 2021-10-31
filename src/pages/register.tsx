@@ -11,7 +11,7 @@ const Register = () => {
   return (
     <PaperComponent>
       <Navbar />
-      <Layout title="Registre-se">
+      <Layout title="Registre-se como vendedor">
         <Box mt={3} mb={5}>
           <Grid
             container
