@@ -6,6 +6,7 @@ import { Categories } from '../components/Categories';
 import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
+import Link from 'next/link';
 
 export default function Index() {
   return (
@@ -21,24 +22,41 @@ export default function Index() {
             justifyContent="center"
             alignItems="center"
           >
-            <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-              <CardComponent />
-            </Grid>
-            <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-              <CardComponent />
-            </Grid>
-            <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-              <CardComponent />
-            </Grid>
-            <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-              <CardComponent />
-            </Grid>
-            <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-              <CardComponent />
-            </Grid>
-            <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-              <CardComponent />
-            </Grid>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
+            <Link href="/ticket/1/1">
+              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <CardComponent />
+              </Grid>
+            </Link>
           </Grid>
         </Box>
       </Layout>
