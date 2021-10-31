@@ -29,12 +29,14 @@ export const Navbar = () => {
             </Link>
           </Box>
           <Hidden mdDown>
-            <RegisterButton
-              variant="outlined"
-              startIcon={<SellIcon />}
-            >
-               Quero vender
-            </RegisterButton>
+            <Link href="/registerseller">
+              <RegisterButton
+                variant="outlined"
+                startIcon={<SellIcon />}
+              >
+                 Quero vender
+              </RegisterButton>
+            </Link>
 
             <Link href="/login">
               <LoginButton

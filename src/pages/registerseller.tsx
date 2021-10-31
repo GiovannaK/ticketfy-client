@@ -7,11 +7,11 @@ import { Navbar } from '../components/Navbar'
 import { PaperComponent } from '../components/PaperComponent'
 import { ActionLinks, CardStyled, Input, LoginButton, Title } from '../pageStyles/login'
 
-const Login = () => {
+const RegisterSeller = () => {
   return (
     <PaperComponent>
       <Navbar />
-      <Layout title="login">
+      <Layout title="Registre-se">
         <Box mt={3} mb={5}>
           <Grid
             container
@@ -23,10 +23,9 @@ const Login = () => {
           >
             <Hidden lgDown>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                <img src="login_image.jpg" style={{
+                <img src="register.svg" style={{
                   height: '100%',
                   width: '100%',
-                  filter: 'brightness(50%)'
                 }}/>
               </Grid>
             </Hidden>
@@ -34,25 +33,15 @@ const Login = () => {
               <CardStyled square>
                 <CardContent>
                   <form>
-                    <Title textAlign="center" variant="h4">Login</Title>
+                    <Title textAlign="center" variant="h4">Quero Vender</Title>
+                    <Input placeholder="Digite seu nome completo"/>
                     <Input placeholder="Digite seu e-mail"/>
-                    <LoginButton variant="contained" type="submit">Login</LoginButton>
+                    <LoginButton variant="contained" type="submit">Registre-se</LoginButton>
                   </form>
-                  <Link href="/register">
-                    <ActionLinks>Não tem uma conta?</ActionLinks>
+                  <Link href="/login">
+                    <ActionLinks>Já tem uma conta?</ActionLinks>
                   </Link>
                 </CardContent>
-                <Hidden lgDown>
-                  <CardContent sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <img src="svg_login.svg" style={{
-                        maxWidth: '50%',
-                    }}/>
-                  </CardContent>
-                </Hidden>
               </CardStyled>
             </Grid>
           </Grid>
@@ -62,4 +51,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default RegisterSeller
