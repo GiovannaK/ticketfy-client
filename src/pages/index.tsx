@@ -13,7 +13,7 @@ export default function Index() {
       <Navbar />
       <Layout title="home">
         <Categories />
-        <Box mt={5}>
+        <Box mt={5} mb={5}>
           <Grid
             container
             spacing={2}

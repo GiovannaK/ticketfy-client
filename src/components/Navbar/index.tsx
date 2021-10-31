@@ -5,6 +5,7 @@ import { Hidden, IconButton, Toolbar } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import { AppBarStyled, LoginButton, RegisterButton } from './styles';
 import SellIcon from '@mui/icons-material/Sell';
+import Link from 'next/link'
 
 export const Navbar = () => {
   return (
@@ -23,7 +24,9 @@ export const Navbar = () => {
             </IconButton>
           </Hidden>
           <Box sx={{flexGrow: 1}}>
-            <img src="logo.png" style={{maxWidth: 115}}/>
+            <Link href="/">
+              <img src="logo.png" style={{maxWidth: 115, cursor: 'pointer'}}/>
+            </Link>
           </Box>
           <Hidden mdDown>
             <RegisterButton
@@ -32,12 +35,15 @@ export const Navbar = () => {
             >
                Quero vender
             </RegisterButton>
-            <LoginButton
-              startIcon={<PersonIcon />}
-              variant="contained"
-            >
-              Entrar
-            </LoginButton>
+
+            <Link href="/login">
+              <LoginButton
+                startIcon={<PersonIcon />}
+                variant="contained"
+              >
+                Entrar
+              </LoginButton>
+            </Link>
           </Hidden>
         </Toolbar>
       </AppBarStyled>
