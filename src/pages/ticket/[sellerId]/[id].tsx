@@ -16,8 +16,25 @@ import {
   Premiun, Price, Standard, Title
 } from '../../../pageStyles/ticket/TicketId'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { ModalCheckout } from '../../../components/ModalCheckout'
+import { useForm } from 'react-hook-form'
+
+type TicketIdType = {
+  amount: string;
+}
 
 const TicketId = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const [total, setTotal] = React.useState(0)
+
+  const handleAmount = (data: TicketIdType) => {
+    console.log(data);
+    const parseAmount = parseInt(data.amount);
+    setTotal(20 * parseAmount)
+  }
   return (
     <PaperComponent>
       <Navbar />
@@ -66,10 +83,20 @@ const TicketId = () => {
                       </Locale>
                     </Grid>
                   </Grid>
-                  <form>
-                    <InputTicket type="number" placeholder="quantidade"/>
-                    <Price>R$ 200,00</Price>
-                    <BuyButton type="submit" variant="contained">Comprar</BuyButton>
+                  <form onSubmit={handleSubmit(handleAmount)}>
+                    <InputTicket
+                      placeholder="quantidade"
+                      type="number"
+                      defaultValue={1}
+                      {...register("amount", {required: 'Quantidade não pode ser nula'})}
+                    />
+                    <BuyButton
+                      variant="contained"
+                      onClick={handleOpen}
+                      type="submit"
+                    >
+                      Comprar
+                    </BuyButton>
                   </form>
                 </CardContent>
               </CardStyled>
@@ -89,6 +116,7 @@ const TicketId = () => {
           </Grid>
         </Box>
       </Layout>
+      <ModalCheckout open={open} handleClose={handleClose} total={total}/>
     </PaperComponent>
   )
 }
