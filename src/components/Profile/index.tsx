@@ -21,7 +21,7 @@ export const Profile = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-              <ProfileTitle variant="h5" textAlign="center">Company Name</ProfileTitle>
+              <ProfileTitle textAlign="center">Company Name</ProfileTitle>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
               <ButtonStripe

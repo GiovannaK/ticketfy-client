@@ -2,7 +2,7 @@ import { Avatar, Card, Typography, Button } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const CardProfile = styled(Card)`
-  background: rgba(131,56,236,0.3);
+  background: linear-gradient(180deg, rgba(0,79,120,0.6643032212885154) 42%, rgba(94,0,106,0.742734593837535) 74%);
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 `
 export const AvatarUser = styled(Avatar)`
@@ -13,6 +13,7 @@ export const ProfileTitle = styled(Typography)`
   color: ${props => props.theme.palette.primary.light};
   text-transform: uppercase;
   font-weight: 700;
+  font-size: ${props => props.theme.spacing(2)}
 `
 
 export const ButtonStripe = styled(Button)`
