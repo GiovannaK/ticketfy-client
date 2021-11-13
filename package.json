@@ -9,15 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.11.0",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
+    "@mui/lab": "^5.0.0-alpha.54",
     "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
     "@stripe/react-stripe-js": "^1.6.0",
     "@stripe/stripe-js": "^1.20.3",
     "@swiper/core": "^0.0.21",
     "@types/swiper": "^5.4.3",
+    "date-fns": "^2.25.0",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",

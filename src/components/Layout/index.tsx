@@ -15,7 +15,7 @@ export const Layout = ({title, children}: LayoutProps) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Container maxWidth="lg" sx={{maxWidth: '100vw'}}>
+      <Container maxWidth="xl" sx={{maxWidth: '100vw'}}>
         {children}
       </Container>
     </>
