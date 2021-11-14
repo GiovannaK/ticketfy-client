@@ -1,10 +1,10 @@
 import { Box } from '@mui/system'
 import React from 'react'
-import { CreateTicketForm } from '../../../components/Create'
-import { DashboardTab } from '../../../components/DashboardTab'
-import { Layout } from '../../../components/Layout'
-import { Navbar } from '../../../components/Navbar'
-import { PaperComponent } from '../../../components/PaperComponent'
+import { CreateTicketForm } from '../components/Create'
+import { DashboardTab } from '../components/DashboardTab'
+import { Layout } from '../components/Layout'
+import { Navbar } from '../components/Navbar'
+import { PaperComponent } from '../components/PaperComponent'
 
 const CreateTicket = () => {
   return (
