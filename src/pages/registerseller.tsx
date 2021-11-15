@@ -34,7 +34,7 @@ const RegisterSeller = () => {
                 <CardContent>
                   <form>
                     <Title textAlign="center" variant="h4">Quero Vender</Title>
-                    <Input placeholder="Digite seu nome completo"/>
+                    <Input placeholder="seu nome completo ou nome da empresa"/>
                     <Input placeholder="Digite seu e-mail"/>
                     <LoginButton variant="contained" type="submit">Registre-se</LoginButton>
                   </form>

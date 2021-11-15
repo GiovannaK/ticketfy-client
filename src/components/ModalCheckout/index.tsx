@@ -1,9 +1,7 @@
-import { Button, Card, CardContent, Grid, Modal, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import { Card, CardContent, Grid } from '@mui/material'
 import React from 'react'
 import { CheckoutButton, ModalStyled, SubTitle, Text, TitleCheckout } from './styles'
 import { CardElement } from '@stripe/react-stripe-js';
-import { Title } from '../../pageStyles/login';
 
 interface IModalCheckout {
   open: boolean;
