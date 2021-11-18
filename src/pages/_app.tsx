@@ -6,6 +6,7 @@ import Head from 'next/head';
 import theme from '../theme/theme';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { ToastContainer } from 'react-toastify';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_CLIENT_KEY as string);
 
@@ -22,6 +23,17 @@ export default function MyApp(props: AppProps) {
         <CssBaseline />
         <Elements stripe={stripePromise}>
           <Component {...pageProps} />
+          <ToastContainer
+            position="bottom-left"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </Elements>
       </ThemeProvider>
     </React.Fragment>

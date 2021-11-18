@@ -8,7 +8,8 @@ export const Input = styled(InputBase)`
   width: 100%;
   padding: ${props => props.theme.spacing(1)};
   font-size: ${props => props.theme.spacing(1.3)};
-  margin-bottom: ${props => props.theme.spacing(2.5)};
+  margin-bottom: ${props => props.theme.spacing(1)};
+  margin-top: ${props => props.theme.spacing(1)};
 `
 
 export const CardStyled = styled(Card)`
