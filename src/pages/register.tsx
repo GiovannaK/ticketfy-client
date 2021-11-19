@@ -9,12 +9,28 @@ import { ActionLinks, CardStyled, Input, LoginButton, Title } from '../pageStyle
 import { useForm } from "react-hook-form";
 import { FormError } from '../pageStyles/global';
 import { IRegister } from '../interfaces/IRegister';
+import {useMutation, UseMutationResult} from 'react-query'
+import { api } from '../services/api';
+import { toast } from 'react-toastify';
+
+const postUser = (user: IRegister) => {
+  return api.post('/user', user);
+}
 
 const Register = () => {
   const { handleSubmit, register, formState: { errors } } = useForm();
 
+  const {isLoading, mutate} = useMutation(postUser, {
+    onSuccess: () => {
+      toast.info('Acesse seu e-mail para fazer login')
+    },
+    onError: (err) => {
+      toast.error('Não foi possível criar uma conta, verifique sua conexão')
+    }
+  })
+
   const onSubmit = (values: IRegister) => {
-    console.log(values)
+    mutate(values)
   }
 
   return (
@@ -72,7 +88,13 @@ const Register = () => {
                     {errors.email && errors.email.message && (
                       <FormError>{errors.email.message}</FormError>
                     )}
-                    <LoginButton variant="contained" type="submit">Registre-se</LoginButton>
+                    <LoginButton
+                      variant="contained"
+                      type="submit"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? 'Enviando...' : 'Registre-se'}
+                    </LoginButton>
                   </form>
                   <Link href="/login">
                     <ActionLinks>Já tem uma conta?</ActionLinks>

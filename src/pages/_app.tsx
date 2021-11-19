@@ -6,9 +6,12 @@ import Head from 'next/head';
 import theme from '../theme/theme';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer } from 'react-toastify';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_CLIENT_KEY as string);
+const reactQueryClient = new QueryClient();
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -21,20 +24,22 @@ export default function MyApp(props: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Elements stripe={stripePromise}>
-          <Component {...pageProps} />
-          <ToastContainer
-            position="bottom-left"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-        </Elements>
+        <QueryClientProvider client={reactQueryClient}>
+          <Elements stripe={stripePromise}>
+            <Component {...pageProps} />
+            <ToastContainer
+              position="bottom-left"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+          </Elements>
+        </QueryClientProvider>
       </ThemeProvider>
     </React.Fragment>
   );
