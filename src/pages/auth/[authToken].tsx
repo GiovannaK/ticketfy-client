@@ -6,12 +6,45 @@ import { Navbar } from '../../components/Navbar'
 import { PaperComponent } from '../../components/PaperComponent'
 import { AccessButton, Title } from '../../pageStyles/auth'
 import { CardStyled } from '../../pageStyles/login'
+import { useRouter } from 'next/router';
+import { api } from '../../services/api'
+import { useQuery } from 'react-query'
+import { toast } from 'react-toastify'
+import Cookie from 'js-cookie';
 
 const AuthLogin = () => {
+  const router = useRouter();
+  const {authToken} = router.query as any
+
+  const sendAuthToken = (authToken: any) => {
+    console.log(authToken)
+    return api.get(`/auth/${authToken}`)
+  }
+
+  const {data, error, isLoading, refetch} = useQuery(["authToken", authToken], () =>
+    sendAuthToken(authToken),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false
+    }
+  )
+
+  if(data){
+    Cookie.set('isLogged', 'true', {
+      expires: 7,
+    });
+    router.push('/user')
+  }
+
+  if(error){
+    toast.error('Não foi possível efetuar o login')
+  }
+
   return (
     <PaperComponent>
       <Navbar />
-      <Layout title="Criar um evento">
+      <Layout title="Ticektfy | Acessar minha conta">
         <Box mt={7} mb={5}>
           <Grid
             container
@@ -31,11 +64,16 @@ const AuthLogin = () => {
                       marginBottom: '2rem'
                     }}/>
                   </Box>
-                  <AccessButton
-                    variant="outlined"
-                  >
-                    Acessar
-                  </AccessButton>
+                  <form>
+                    <AccessButton
+                      variant="outlined"
+                      disabled={isLoading}
+                      type="submit"
+                      onClick={refetch}
+                    >
+                      {isLoading ? 'Carregando...' : 'Acessar'}
+                    </AccessButton>
+                  </form>
                 </CardContent>
               </CardStyled>
             </Grid>
