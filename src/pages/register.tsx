@@ -9,7 +9,7 @@ import { ActionLinks, CardStyled, Input, LoginButton, Title } from '../pageStyle
 import { useForm } from "react-hook-form";
 import { FormError } from '../pageStyles/global';
 import { IRegister } from '../interfaces/IRegister';
-import {useMutation, UseMutationResult} from 'react-query'
+import {useMutation} from 'react-query'
 import { api } from '../services/api';
 import { toast } from 'react-toastify';
 
@@ -47,7 +47,7 @@ const Register = () => {
             }}
           >
             <Hidden lgDown>
-              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Grid item xs={12} sm={12} md={4} lg={6} xl={6}>
                 <img src="online.png" style={{
                   height: '100%',
                   width: '100%',
@@ -89,7 +89,7 @@ const Register = () => {
                       <FormError>{errors.email.message}</FormError>
                     )}
                     <LoginButton
-                      variant="contained"
+                      variant="outlined"
                       type="submit"
                       disabled={isLoading}
                     >

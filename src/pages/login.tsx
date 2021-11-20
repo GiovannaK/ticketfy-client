@@ -22,7 +22,7 @@ const Login = () => {
             }}
           >
             <Hidden lgDown>
-              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Grid item xs={12} sm={12} md={4} lg={6} xl={6}>
                 <img src="login_image.jpg" style={{
                   height: '100%',
                   width: '100%',
@@ -30,7 +30,7 @@ const Login = () => {
                 }}/>
               </Grid>
             </Hidden>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            <Grid item xs={12} sm={12} md={8} lg={6} xl={6}>
               <CardStyled square>
                 <CardContent>
                   <form>

@@ -29,6 +29,7 @@ export const LoginButton = styled(Button)`
   width: 100%;
   margin-top: ${props => props.theme.spacing(3)};
   margin-bottom: ${props => props.theme.spacing(5)};
+  padding: ${props => props.theme.spacing(0.7)};
 `
 
 export const ActionLinks = styled(Link)`
