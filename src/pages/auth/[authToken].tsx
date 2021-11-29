@@ -17,7 +17,6 @@ const AuthLogin = () => {
   const {authToken} = router.query as any
 
   const sendAuthToken = (authToken: any) => {
-    console.log(authToken)
     return api.get(`/auth/${authToken}`)
   }
 
@@ -39,6 +38,10 @@ const AuthLogin = () => {
 
   if(error){
     toast.error('Não foi possível efetuar o login')
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>, refetch: any) => {
+    refetch()
   }
 
   return (
@@ -69,7 +72,7 @@ const AuthLogin = () => {
                       variant="outlined"
                       disabled={isLoading}
                       type="submit"
-                      onClick={refetch}
+                      onClick={(e) => handleClick(e, refetch)}
                     >
                       {isLoading ? 'Carregando...' : 'Acessar'}
                     </AccessButton>

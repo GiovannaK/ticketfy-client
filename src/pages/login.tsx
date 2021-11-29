@@ -74,7 +74,13 @@ const Login = () => {
                     {errors.email && errors.email.message && (
                       <FormError>{errors.email.message}</FormError>
                     )}
-                    <LoginButton variant="contained" type="submit">Login</LoginButton>
+                    <LoginButton
+                      variant="contained"
+                      type="submit"
+                      disabled={isLoading}
+                    >
+                      Login
+                    </LoginButton>
                   </form>
                   <Link href="/register">
                     <ActionLinks>Não tem uma conta?</ActionLinks>

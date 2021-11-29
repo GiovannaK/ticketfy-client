@@ -4,8 +4,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { AvatarUser, ButtonData, CardProfile, ProfileTitle } from './styles'
 import { Box } from '@mui/system';
 import Link from 'next/link';
+import { ProfileContextType } from '../../../context/ProfileContext';
 
-export const UserProfileCard = () => {
+export const UserProfileCard = ({userProfile}: ProfileContextType) => {
   return (
     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
       <CardProfile>
@@ -22,7 +23,7 @@ export const UserProfileCard = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-              <ProfileTitle textAlign="center">User Name</ProfileTitle>
+              <ProfileTitle textAlign="center">{userProfile && (userProfile.fullName)}</ProfileTitle>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
               <Link href="/profile">
@@ -36,7 +37,6 @@ export const UserProfileCard = () => {
             </Grid>
           </Grid>
         </CardContent>
-
       </CardProfile>
     </Grid>
   )

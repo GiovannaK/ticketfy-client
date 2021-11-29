@@ -1,13 +1,15 @@
 import { Grid } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Layout } from '../components/Layout'
 import { Navbar } from '../components/Navbar'
 import { PaperComponent } from '../components/PaperComponent'
 import { UserProfileCard } from '../components/User/UserProfileCard'
 import { UserTickets } from '../components/User/UserTickets'
+import { ProfileContext } from '../context/ProfileContext'
 
 const User = () => {
+  const { userProfile } = useContext(ProfileContext);
   return (
     <PaperComponent>
       <Navbar />
@@ -20,7 +22,9 @@ const User = () => {
               justifyContent: 'center',
             }}
           >
-            <UserProfileCard />
+            {userProfile && (
+              <UserProfileCard userProfile={userProfile}/>
+            )}
             <UserTickets />
           </Grid>
         </Box>
