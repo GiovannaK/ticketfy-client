@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
     "@mui/lab": "^5.0.0-alpha.54",
-    "@mui/material": "latest",
+    "@mui/material": "^5.2.2",
     "@mui/styled-engine-sc": "latest",
     "@mui/styles": "^5.1.0",
     "@stripe/react-stripe-js": "^1.6.0",
