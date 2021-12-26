@@ -32,7 +32,7 @@ export const Navbar = () => {
             </Link>
           </Box>
           <Hidden mdDown>
-            {userProfile ? (
+            {userProfile?.id ? (
               <Logout />
             ) : (
               <>

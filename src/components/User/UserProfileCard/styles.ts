@@ -2,11 +2,11 @@ import { Avatar, Card, Typography, Button } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const CardProfile = styled(Card)`
-  background: rgb(89,0,149);
-  background: -moz-linear-gradient(180deg, rgba(89,0,149,0.6643032212885154) 31%, rgba(0,194,175,0.5787037037037037) 59%);
-  background: -webkit-linear-gradient(180deg, rgba(89,0,149,0.6643032212885154) 31%, rgba(0,194,175,0.5787037037037037) 59%);
-  background: linear-gradient(180deg, rgba(89,0,149,0.6643032212885154) 31%, rgba(0,194,175,0.5787037037037037) 59%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#590095",endColorstr="#00c2af",GradientType=1);
+  background: rgb(16,188,233);
+  background: -moz-linear-gradient(180deg, rgba(16,188,233,1) 0%, rgba(101,0,172,1) 43%, rgba(3,29,84,1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(16,188,233,1) 0%, rgba(101,0,172,1) 43%, rgba(3,29,84,1) 100%);
+  background: linear-gradient(180deg, rgba(16,188,233,1) 0%, rgba(101,0,172,1) 43%, rgba(3,29,84,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#10bce9",endColorstr="#031d54",GradientType=1);
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 `
 export const AvatarUser = styled(Avatar)`

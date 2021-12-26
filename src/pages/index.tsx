@@ -63,7 +63,7 @@ export default function Index() {
           </Grid>
         </Box>
       </Layout>
-      {userProfile && (
+      {userProfile?.id && (
         <SpeedNavigation />
       )}
     </PaperComponent>
