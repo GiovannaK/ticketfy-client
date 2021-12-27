@@ -9,14 +9,12 @@ import { Navbar } from '../components/Navbar'
 import { PaperComponent } from '../components/PaperComponent'
 import { ButtonData, CardStyled } from '../pageStyles/nextstep'
 import { api } from '../services/api'
-import redirect from 'nextjs-redirect'
-import { AxiosResponse } from 'axios'
 
 type AccountLink = {
-    object: string,
-    created: number
-    expires_at: number,
-    url: string
+  object: string,
+  created: number
+  expires_at: number,
+  url: string
 }
 
 const nextstep = () => {
@@ -39,7 +37,6 @@ const nextstep = () => {
 
   if(error){
     toast.error('Não foi possível redirecionar, verifique sua conexão')
-    console.log(error)
   }
 
   const handleClick = (e: React.MouseEvent<HTMLElement>, refetch: any) => {

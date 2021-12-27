@@ -7,8 +7,10 @@ import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
 import { Profile } from '../components/Profile';
 import { Tickets } from '../components/Tickets';
+import { ProfileContext } from '../context/ProfileContext';
 
 const Seller = () => {
+  const { userProfile } = React.useContext(ProfileContext);
   return (
     <PaperComponent>
       <Navbar />
@@ -22,7 +24,9 @@ const Seller = () => {
               justifyContent: 'center',
             }}
           >
-            <Profile />
+            {userProfile && (
+              <Profile userProfile={userProfile}/>
+            )}
             <Tickets />
           </Grid>
         </Box>
