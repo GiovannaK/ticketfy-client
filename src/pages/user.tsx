@@ -5,7 +5,6 @@ import { Layout } from '../components/Layout'
 import { Navbar } from '../components/Navbar'
 import { PaperComponent } from '../components/PaperComponent'
 import { SideBar } from '../components/SideBar'
-import { SpeedNavigation } from '../components/SpeedNavigation'
 import { UserProfileCard } from '../components/User/UserProfileCard'
 import { UserTickets } from '../components/User/UserTickets'
 import { ProfileContext } from '../context/ProfileContext'
@@ -32,7 +31,6 @@ const User = () => {
           </Grid>
         </Box>
       </Layout>
-      <SpeedNavigation />
     </PaperComponent>
   )
 }

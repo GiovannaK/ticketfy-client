@@ -7,12 +7,9 @@ import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
 import Link from 'next/link';
-import { SpeedNavigation } from '../components/SpeedNavigation';
-import { ProfileContext } from '../context/ProfileContext';
 import { SideBar } from '../components/SideBar';
 
 export default function Index() {
-  const { userProfile } = React.useContext(ProfileContext);
   return (
     <PaperComponent>
       <Navbar />
@@ -65,9 +62,6 @@ export default function Index() {
           </Grid>
         </Box>
       </Layout>
-      {userProfile?.id && (
-        <SpeedNavigation />
-      )}
     </PaperComponent>
   );
 }
