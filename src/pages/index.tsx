@@ -9,12 +9,14 @@ import { PaperComponent } from '../components/PaperComponent';
 import Link from 'next/link';
 import { SpeedNavigation } from '../components/SpeedNavigation';
 import { ProfileContext } from '../context/ProfileContext';
+import { SideBar } from '../components/SideBar';
 
 export default function Index() {
   const { userProfile } = React.useContext(ProfileContext);
   return (
     <PaperComponent>
       <Navbar />
+      <SideBar />
       <Layout title="home">
         <Categories />
         <Box mt={5} mb={5}>

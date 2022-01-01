@@ -5,10 +5,15 @@ import { api } from '../../services/api';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import Cookie from 'js-cookie';
-import { useRouter } from 'next/router';
-import { Loading } from '../Loading';
 
-export const Logout = () => {
+import { Loading } from '../Loading';
+import { IconBtn } from '../SideBar/styles';
+
+type LogoutType = {
+  name: string
+}
+
+export const Logout = ({ name }: LogoutType) => {
   const handleLogout = async() => {
     return await api.post(`/auth/logout`)
   }
@@ -33,12 +38,31 @@ export const Logout = () => {
 
 
   return (
-    <ButtonLogout
-      variant="outlined"
-      startIcon={<LogoutIcon />}
-      onClick={(e) => handleClick(e, mutate)}
-    >
-      Sair
-    </ButtonLogout>
+    <>
+      {name === 'Navbar' ? (
+
+        <ButtonLogout
+          variant="outlined"
+          startIcon={<LogoutIcon />}
+          onClick={(e) => handleClick(e, mutate)}
+        >
+          Sair
+        </ButtonLogout>
+      ) : (
+
+        <IconBtn
+          onClick={(e) => handleClick(e, mutate)}
+        >
+          <LogoutIcon
+            color='secondary'
+            sx={{
+              transform: 'scale(1.7)',
+              bottom: 60,
+              position: 'fixed'
+            }}
+          />
+        </IconBtn>
+      )}
+    </>
   )
 }

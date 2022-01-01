@@ -15,17 +15,6 @@ export const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBarStyled position="sticky">
         <Toolbar>
-          <Hidden mdUp>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon sx={{fontSize: 35}}/>
-            </IconButton>
-          </Hidden>
           <Box sx={{flexGrow: 1}}>
             <Link href="/">
               <img src="/logo.png" style={{maxWidth: 115, cursor: 'pointer'}}/>
@@ -33,7 +22,7 @@ export const Navbar = () => {
           </Box>
           <Hidden mdDown>
             {userProfile?.id ? (
-              <Logout />
+              <Logout name="Navbar"/>
             ) : (
               <>
                 <Link href="/registerseller">

@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 import { Layout } from '../components/Layout'
 import { Navbar } from '../components/Navbar'
 import { PaperComponent } from '../components/PaperComponent'
+import { SideBar } from '../components/SideBar'
 import { SpeedNavigation } from '../components/SpeedNavigation'
 import { UserProfileCard } from '../components/User/UserProfileCard'
 import { UserTickets } from '../components/User/UserTickets'
@@ -14,6 +15,7 @@ const User = () => {
   return (
     <PaperComponent>
       <Navbar />
+      <SideBar />
       <Layout title="Criar um evento">
         <Box mt={1} mb={5}>
         <Grid container

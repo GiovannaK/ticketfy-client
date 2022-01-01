@@ -6,6 +6,7 @@ import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
 import { Profile } from '../components/Profile';
+import { SideBar } from '../components/SideBar';
 import { Tickets } from '../components/Tickets';
 import { ProfileContext } from '../context/ProfileContext';
 
@@ -14,6 +15,7 @@ const Seller = () => {
   return (
     <PaperComponent>
       <Navbar />
+      <SideBar />
       <Layout title="seller dashboard">
         <Box mt={1} mb={3}>
           <DashboardTab />
