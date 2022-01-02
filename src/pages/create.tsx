@@ -14,7 +14,6 @@ const CreateTicket = () => {
       <SideBar />
       <Layout title="Criar um evento">
         <Box mt={1} mb={5}>
-          <DashboardTab />
           <CreateTicketForm />
         </Box>
       </Layout>

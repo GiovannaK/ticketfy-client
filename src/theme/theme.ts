@@ -27,7 +27,7 @@ const theme = createTheme({
       secondary: '#333333',
     },
     background: {
-      paper: 'rgb(255,141,79)',
+      paper: '#340062',
     },
   },
   components: {
