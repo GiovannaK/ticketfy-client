@@ -1,4 +1,4 @@
-import { Button, Card, TextField, Typography } from "@mui/material";
+import { Button, Card, Select, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import InputBase from '@mui/material/InputBase';
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
@@ -7,13 +7,20 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Checkbox from '@mui/material/Checkbox';
 
 export const CardCreateEvent = styled(Card)`
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.3);
 `
 
 export const InputCreate = styled(InputBase)`
   border: 2px solid ${props => props.theme.palette.primary.main};
   border-radius: 5px;
   padding: 0.7rem;
+  color: ${props => props.theme.palette.secondary.main};
+  font-size: ${props => props.theme.spacing(1.3)};
+`
+
+export const SelectCreate = styled(Select)`
+  border: 2px solid ${props => props.theme.palette.primary.main};
+  border-radius: 5px;
   color: ${props => props.theme.palette.secondary.main};
   font-size: ${props => props.theme.spacing(1.3)};
 `
@@ -50,6 +57,7 @@ export const StyledTextField = styled(TextField)({
 export const CheckBoxInput = styled(Checkbox)`
   color: ${props => props.theme.palette.primary.main};
   transform: scale(1.5);
+  margin-left: ${props => props.theme.spacing(1.2)};
 `
 
 export const FormButton = styled(Button)`

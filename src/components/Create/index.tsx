@@ -6,11 +6,13 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { MobileDatePicker, MobileTimePicker} from '@mui/lab';
 import brLocale from 'date-fns/locale/pt-BR';
 import { Controller, useForm } from 'react-hook-form'
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { api } from '../../services/api';
 import { ICategory } from '../../interfaces/ICategory';
 import { FormError } from '../../pageStyles/global';
 import { ITicket } from '../../interfaces/ITicket';
+import { toast } from 'react-toastify';
+import moment from 'moment'
 
 const getCategory = async () => {
   const categories = await api.get<ICategory>('/category')
@@ -23,7 +25,6 @@ export const CreateTicketForm = (): JSX.Element => {
   const [date, setDate] = React.useState<Date | null>(null);
   const [hour, setHour] = React.useState<Date | null>(null);
   const [isFree, setIsFree] = React.useState<boolean>(false)
-  const [online, setOnline] = React.useState<boolean>(false)
   const dateValue = getValues('date') as Date;
   const hourValue = getValues('hour') as Date;
 
@@ -48,8 +49,28 @@ export const CreateTicketForm = (): JSX.Element => {
     setDate(hourValue || null);
   }, [setDate, hourValue]);
 
+  const postTicket = async(ticket: ITicket) => {
+    const newTicket = {...ticket,
+      date: moment.utc(ticket.date).local().format(),
+      hour: moment.utc(ticket.hour).local().format(),
+      price: ticket.price === "" ? 0 : Number(ticket.price),
+      quantity: Number(ticket.quantity)
+    }
+    console.log(newTicket)
+    return await api.post('/ticket', newTicket)
+  }
+
+  const {isLoading: loading, mutate} = useMutation(postTicket, {
+    onSuccess: () => {
+      toast.info('Ticket criado com sucesso!')
+    },
+    onError: (error) => {
+      toast.error('Não foi possível criar ticket.')
+    }
+  })
+
   const onSubmit = (values: ITicket) => {
-    console.log('VALUE', values)
+    mutate(values)
   }
 
   return (
@@ -77,6 +98,9 @@ export const CreateTicketForm = (): JSX.Element => {
                         maxLength: 200
                       })}
                     />
+                    {errors.title && errors.title.message && (
+                      <FormError>{errors.title.message}</FormError>
+                    )}
                   </Grid>
                   <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Label>Categoria *</Label>
@@ -96,32 +120,9 @@ export const CreateTicketForm = (): JSX.Element => {
                         ))
                       )}
                     </SelectCreate>
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Label>Link do evento *</Label>
-                    <InputCreate fullWidth placeholder="Link do evento"/>
-                  </Grid>
-                  <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <Label>Evento Online</Label>
-                    <FormControlLabel
-                      label=''
-                      control={
-                        <Controller
-                          name={'isOnline'}
-                          control={control}
-                          render={(props) => (
-                            <CheckBoxInput
-                              {...props}
-                              checked={props.field.value}
-                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                setOnline(e.target.checked);
-                                props.field.onChange(e.target.checked)
-                              }}
-                            />
-                          )}
-                        />
-                      }
-                    />
+                    {errors.category && errors.category.message && (
+                      <FormError>{errors.category.message}</FormError>
+                    )}
                   </Grid>
                   <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
                     <Label>Venda Ativa</Label>
@@ -164,7 +165,7 @@ export const CreateTicketForm = (): JSX.Element => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <Label>Quantidade de tickets *</Label>
                     <InputCreate
                       fullWidth placeholder="Quantidade"
@@ -175,6 +176,7 @@ export const CreateTicketForm = (): JSX.Element => {
                           message: "Quantidade deve ser um número inteiro"
                         }
                       })}
+                      defaultValue={1}
                     />
                     {errors.quantity && errors.quantity.message && (
                       <FormError>{errors.quantity.message}</FormError>
@@ -191,7 +193,32 @@ export const CreateTicketForm = (): JSX.Element => {
                       })}
                       fullWidth placeholder="Preço"
                       disabled={isFree}
+                      defaultValue={0}
                     />
+                    {errors.price && errors.price.message && (
+                      <FormError>{errors.price.message}</FormError>
+                    )}
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <Label>Link do evento *</Label>
+                    <InputCreate
+                      fullWidth
+                      placeholder="Link do evento"
+                      {...register("link", {
+                        required: "Nome do evento é requerido",
+                        maxLength: 200,
+                        minLength: 3,
+                      })}
+                    />
+                    {errors.link && errors.link.type === "maxLength" && (
+                      <FormError>Link deve ter até 200 caracteres</FormError>
+                    )}
+                    {errors.link && errors.link.type === "required" && (
+                      <FormError>Link do evento é requerido</FormError>
+                    )}
+                    {errors.link && errors.link.type === "minLength" && (
+                      <FormError>Link deve ter pelo menos 3 caracteres</FormError>
+                    )}
                   </Grid>
                   <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Label>Data *</Label>
@@ -207,6 +234,9 @@ export const CreateTicketForm = (): JSX.Element => {
                             {...params} fullWidth />}
                       />
                     </LocalizationProvider>
+                    {errors.date && errors.date.message && (
+                      <FormError>{errors.date.message}</FormError>
+                    )}
                   </Grid>
                   <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Label>Hora *</Label>
@@ -221,16 +251,9 @@ export const CreateTicketForm = (): JSX.Element => {
                         renderInput={(params: any) => <StyledTextField {...params} fullWidth />}
                       />
                     </LocalizationProvider>
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Label>Endereço ({online ? 'Não disponível' : '*'})</Label>
-                    <InputCreate
-                      fullWidth placeholder="Endereço do evento"
-                      disabled={online}
-                      {...register("address", {
-                        maxLength: 5000
-                      })}
-                    />
+                    {errors.hour && errors.hour.message && (
+                      <FormError>{errors.hour.message}</FormError>
+                    )}
                   </Grid>
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                     <Label>Descrição (max: 5000)</Label>
@@ -243,9 +266,12 @@ export const CreateTicketForm = (): JSX.Element => {
                         maxLength: 5000
                       })}
                     />
+                    {errors.description && errors.description.message && (
+                      <FormError>{errors.description.message}</FormError>
+                    )}
                   </Grid >
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <FormButton variant="outlined" type="submit">Adicionar</FormButton>
+                    <FormButton variant="outlined" disabled={loading} type="submit">Adicionar</FormButton>
                   </Grid>
                   </Grid>
               </form>
