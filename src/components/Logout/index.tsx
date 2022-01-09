@@ -54,7 +54,7 @@ export const Logout = ({ name }: LogoutType) => {
           onClick={(e) => handleClick(e, mutate)}
         >
           <LogoutIcon
-            color='secondary'
+            color='primary'
             sx={{
               transform: 'scale(1.7)',
               bottom: 60,

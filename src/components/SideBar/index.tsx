@@ -28,7 +28,7 @@ export const SideBar = () => {
              <Link href="/">
               <IconBtn>
                 <ConfirmationNumberIcon
-                  color='secondary'
+                  color='primary'
                   sx={{
                     transform: 'scale(1.7)'
                   }}
@@ -38,7 +38,7 @@ export const SideBar = () => {
              <Link href={userProfile?.role === 'user' ? '/user' : '/seller'}>
                 <IconBtn>
                   <DashboardIcon
-                    color='secondary'
+                    color='primary'
                     sx={{
                       transform: 'scale(1.7)'
                     }}
@@ -49,7 +49,7 @@ export const SideBar = () => {
                <Link href="/create">
                   <IconBtn>
                     <CreateIcon
-                      color='secondary'
+                      color='primary'
                       sx={{
                         transform: 'scale(1.7)'
                       }}

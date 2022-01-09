@@ -17,7 +17,7 @@ export const Navbar = () => {
         <Toolbar>
           <Box sx={{flexGrow: 1}}>
             <Link href="/">
-              <img src="/logo.png" style={{maxWidth: 115, cursor: 'pointer', marginLeft: '2rem'}}/>
+              <img src="/logo.png" style={{maxWidth: 100, cursor: 'pointer', marginLeft: '5rem'}}/>
             </Link>
           </Box>
           <Hidden mdDown>

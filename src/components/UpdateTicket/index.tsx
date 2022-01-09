@@ -91,7 +91,7 @@ export const UpdateTicketForm = (): JSX.Element => {
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <CardCreateEvent>
             <CardContent>
-              <FormTitle>Adicionar evento</FormTitle>
+              <FormTitle>Atualizar Ticket</FormTitle>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -277,7 +277,15 @@ export const UpdateTicketForm = (): JSX.Element => {
                     )}
                   </Grid >
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <FormButton variant="outlined" disabled={loading} type="submit">Adicionar</FormButton>
+                    <Label>Imagem</Label>
+                    <UploadButton
+                      onClick={() => setOpenUpload(true)}
+                    >
+                      Adicionar imagem
+                    </UploadButton>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <FormButton variant="outlined" disabled={loading} type="submit">Atualizar</FormButton>
                   </Grid>
                   </Grid>
               </form>
@@ -285,6 +293,25 @@ export const UpdateTicketForm = (): JSX.Element => {
           </CardCreateEvent>
         </Grid>
       </Grid>
+      <DropzoneDialog
+        /* acceptedFiles={['.pdf', '.xls', '.doc', '.docx', '.csv']} */
+        cancelButtonText="cancelar"
+
+        submitButtonText="enviar"
+        maxFileSize={3145728}
+        open={openUpload}
+        dropzoneText="Arraste a imagem aqui ou clique"
+        filesLimit={1}
+        onClose={() => setOpenUpload(false)}
+        onSave={(files) => {
+          const file = files[0];
+          console.log(file);
+          /* uploadFile({ variables: { file, id: taskId, workspaceId: id } }); */
+          setOpenUpload(false);
+        }}
+        showPreviews
+        showFileNamesInPreview
+      />
     </>
   )
 }
