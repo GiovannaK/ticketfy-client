@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent } from '@mui/material'
+import { Grid, Card, CardContent, CircularProgress } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { Layout } from '../../../components/Layout'
@@ -18,9 +18,19 @@ import {
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ModalCheckout } from '../../../components/ModalCheckout'
 import { useForm } from 'react-hook-form'
+import { useQuery } from 'react-query'
+import {useRouter} from 'next/router'
+import { api } from '../../../services/api'
+import { ITicket } from '../../../interfaces/ITickets'
+import moment from 'moment'
 
 type TicketIdType = {
   amount: string;
+}
+
+const getTicket = async (id: string | string[] | undefined) => {
+  const ticket = await api.get<ITicket>(`/ticket/${id}`)
+  return ticket.data
 }
 
 const TicketId = () => {
@@ -29,11 +39,25 @@ const TicketId = () => {
   const handleClose = () => setOpen(false);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [total, setTotal] = React.useState(0)
+  const router = useRouter()
+  const {id} = router.query
 
   const handleAmount = (data: TicketIdType) => {
     console.log(data);
     const parseAmount = parseInt(data.amount);
     setTotal(20 * parseAmount)
+  }
+
+  const {data, error, isLoading} = useQuery(["ticket", id], () =>
+    getTicket(id),
+  )
+
+  if(error){
+    console.log(error)
+  }
+
+  if(isLoading){
+    <CircularProgress />
   }
   return (
     <PaperComponent>
@@ -59,7 +83,7 @@ const TicketId = () => {
                     textAlign="center"
                     variant="h5"
                   >
-                    Event Name
+                    {data && data?.title}
                   </Title>
                   <Grid
                     container mt={1.5}
@@ -69,18 +93,13 @@ const TicketId = () => {
                       <Premiun><LocalAtmIcon /> R$ 20,00</Premiun>
                     </Grid>
                     <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Hour><AccessTimeIcon /> 19:00</Hour>
+                      <Hour><AccessTimeIcon />{moment.utc(data && data?.hour).local().format('HH:mm')}</Hour>
                     </Grid>
                     <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Date><DateRangeIcon /> 20/10/2021</Date>
+                      <Date><DateRangeIcon />{moment.utc(data && data?.date).local().format('DD/MM/YYYY')}</Date>
                     </Grid>
                     <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Standard><ViewQuiltIcon /> Tecnologia</Standard>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                      <Locale>
-                        <LocationOnIcon /> Lorem ipsum dolor sit amet, consectetur adipisicing
-                      </Locale>
+                      <Standard><ViewQuiltIcon />{data?.ticketCategory && data.ticketCategory.title}</Standard>
                     </Grid>
                   </Grid>
                   <form onSubmit={handleSubmit(handleAmount)}>
@@ -108,7 +127,7 @@ const TicketId = () => {
                 <CardContent>
                   <Title variant="h6" textAlign="center">Descrição</Title>
                   <Description>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat atque eligendi expedita eum dolores inventore possimus! Rerum laborum laudantium quas est quam consequuntur alias corrupti vitae fugiat enim assumenda itaque, ratione non, eligendi magnam nihil ut nostrum nisi necessitatibus! Dignissimos et accusantium quaerat quis nobis quam sequi molestias officiis deleniti?
+                    {data.description}
                   </Description>
                 </CardContent>
               </CardStyled>

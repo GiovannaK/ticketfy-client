@@ -35,6 +35,7 @@ color: #EFB32A;
 `
 export const Standard = styled(Typography)`
 color: #23B24C;
+text-transform: uppercase;
 `
 
 export const InputTicket = styled(InputBase)`

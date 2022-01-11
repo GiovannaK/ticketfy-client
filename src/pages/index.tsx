@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { CircularProgress, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
 import { CardComponent } from '../components/CardComponent';
@@ -8,8 +8,26 @@ import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
 import Link from 'next/link';
 import { SideBar } from '../components/SideBar';
+import { useQuery } from 'react-query';
+import { api } from '../services/api';
+import { ITicket } from '../interfaces/ITickets';
+
+const getTickets = async () => {
+  const tickets = await api.get<ITicket[]>('/ticket')
+  return tickets.data
+}
 
 export default function Index() {
+  const {data, error, isLoading} = useQuery("tickets", getTickets)
+
+  if(error){
+    console.log(error)
+  }
+
+  if(isLoading){
+    <CircularProgress />
+  }
+
   return (
     <PaperComponent>
       <Navbar />
@@ -24,41 +42,13 @@ export default function Index() {
             justifyContent="center"
             alignItems="center"
           >
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
-            <Link href="/ticket/1/1">
-              <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
-                <CardComponent />
-              </Grid>
-            </Link>
+            {data && data?.map((ticket) => (
+              <Link href={`/ticket/${ticket.sellerId.id}/${ticket.id}`}>
+                <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                  <CardComponent ticket={ticket} />
+                </Grid>
+              </Link>
+            ))}
           </Grid>
         </Box>
       </Layout>
