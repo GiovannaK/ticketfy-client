@@ -29,7 +29,7 @@ export const CardComponent = ({ticket}: TicketDetail) => {
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Locale>{ticket.isOnline ? 'Online' : 'Presencial'}</Locale>
-          <Price>{ticket.price === 0 ? 'Gratuito' : ticket.price}</Price>
+          <Price>{ticket.price === 0 ? 'Gratuito' : 'R$' + Number(ticket.price).toFixed(2).toString().replace('.', ',')}</Price>
         </Box>
       </CardContent>
     </CardStyled>

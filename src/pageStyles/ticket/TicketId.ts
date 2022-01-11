@@ -29,13 +29,16 @@ export const Price = styled(Typography)`
 color: ${props => props.theme.palette.text.primary};
 text-align: center;
 font-size: ${props => props.theme.spacing(2)};
+font-weight: 900;
 `
 export const Premiun = styled(Typography)`
 color: #EFB32A;
+font-weight: 900;
 `
 export const Standard = styled(Typography)`
 color: #23B24C;
 text-transform: uppercase;
+font-weight: 900;
 `
 
 export const InputTicket = styled(InputBase)`

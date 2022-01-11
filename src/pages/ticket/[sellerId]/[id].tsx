@@ -42,15 +42,17 @@ const TicketId = () => {
   const router = useRouter()
   const {id} = router.query
 
-  const handleAmount = (data: TicketIdType) => {
-    console.log(data);
-    const parseAmount = parseInt(data.amount);
-    setTotal(20 * parseAmount)
-  }
-
   const {data, error, isLoading} = useQuery(["ticket", id], () =>
     getTicket(id),
   )
+
+  const handleAmount = (amount: TicketIdType) => {
+    const parseAmount = parseInt(amount.amount);
+    if(data){
+      setTotal(data.price * parseAmount)
+    }
+  }
+
 
   if(error){
     console.log(error)
@@ -82,6 +84,7 @@ const TicketId = () => {
                   <Title
                     textAlign="center"
                     variant="h5"
+                    mt={7}
                   >
                     {data && data?.title}
                   </Title>
@@ -90,7 +93,7 @@ const TicketId = () => {
                     spacing={2}
                   >
                     <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Premiun><LocalAtmIcon /> R$ 20,00</Premiun>
+                      <Premiun><LocalAtmIcon />{'R$' + Number(data && data?.price).toFixed(2).toString().replace('.', ',')}</Premiun>
                     </Grid>
                     <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
                       <Hour><AccessTimeIcon />{moment.utc(data && data?.hour).local().format('HH:mm')}</Hour>
@@ -127,7 +130,7 @@ const TicketId = () => {
                 <CardContent>
                   <Title variant="h6" textAlign="center">Descrição</Title>
                   <Description>
-                    {data.description}
+                    {data?.description}
                   </Description>
                 </CardContent>
               </CardStyled>
