@@ -6,10 +6,6 @@ export const CardStyled = styled(Card)`
   transition: 0.3s ease-in;
   /* background: ${props => props.theme.palette.text.secondary}; */
   background: rgba(0,0,0,0.3);
-
-  &:hover {
-    transform: scale(1.02)
-  }
 `
 export const CardMediaStyled = styled(CardMedia)`
   height: 170px;

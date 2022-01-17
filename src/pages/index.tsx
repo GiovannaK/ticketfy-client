@@ -11,6 +11,7 @@ import { SideBar } from '../components/SideBar';
 import { useQuery } from 'react-query';
 import { api } from '../services/api';
 import { ITicket } from '../interfaces/ITickets';
+import { CardCategory } from '../components/CardCategory';
 
 const getTickets = async () => {
   const tickets = await api.get<ITicket[]>('/ticket')
@@ -33,7 +34,7 @@ export default function Index() {
       <Navbar />
       <SideBar />
       <Layout title="home">
-        <Categories />
+        <CardCategory />
         <Box mt={5} mb={5}>
           <Grid
             container

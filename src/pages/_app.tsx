@@ -10,12 +10,18 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ProfileProvider } from '../context/ProfileContext';
+import "swiper/css";
+import "swiper/css/navigation"
+import SwiperCore, {
+	Navigation,Autoplay
+} from 'swiper';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_CLIENT_KEY as string);
 const reactQueryClient = new QueryClient();
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
+  SwiperCore.use([Navigation, Autoplay]);
   return (
     <React.Fragment>
       <Head>
