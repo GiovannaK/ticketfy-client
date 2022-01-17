@@ -45,6 +45,7 @@ export const Logout = ({ name }: LogoutType) => {
           variant="outlined"
           startIcon={<LogoutIcon />}
           onClick={(e) => handleClick(e, mutate)}
+          sx={{marginRight: '5rem'}}
         >
           Sair
         </ButtonLogout>

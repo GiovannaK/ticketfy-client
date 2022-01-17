@@ -23,6 +23,7 @@ import {useRouter} from 'next/router'
 import { api } from '../../../services/api'
 import { ITicket } from '../../../interfaces/ITickets'
 import moment from 'moment'
+import { SideBar } from '../../../components/SideBar'
 
 type TicketIdType = {
   amount: string;
@@ -64,6 +65,7 @@ const TicketId = () => {
   return (
     <PaperComponent>
       <Navbar />
+      <SideBar />
       <Layout title="event name">
         <Box mt={3}>
           <Grid
