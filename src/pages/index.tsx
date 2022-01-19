@@ -2,7 +2,6 @@ import { CircularProgress, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
 import { CardComponent } from '../components/CardComponent';
-import { Categories } from '../components/Categories';
 import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';

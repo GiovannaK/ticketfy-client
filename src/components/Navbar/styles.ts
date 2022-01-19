@@ -5,7 +5,6 @@ export const AppBarStyled = styled(AppBar)`
   background: transparent;
   height: 7vh;
   box-shadow: none;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
 `
 export const LoginButton = styled(Button)`
   background: ${props => props.theme.palette.primary.light};
