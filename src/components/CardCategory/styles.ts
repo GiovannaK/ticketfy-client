@@ -1,13 +1,7 @@
 import { Card, CardContent, styled, Typography } from "@mui/material";
 
 export const CustomCard = styled(Card)`
-  &:nth-child(4n + 1) {
-    background: linear-gradient(
-      90deg,
-      rgba(93, 12, 255, 1) 0%,
-      rgba(155, 0, 250, 1) 100%
-    );
-  }
+  background: linear-gradient(90deg, rgba(237,134,0,1) 0%, rgba(144,0,172,1) 43%, rgba(28,46,181,1) 100%);
   transition: 0.3s ease-in;
   cursor: pointer;
   &:hover{

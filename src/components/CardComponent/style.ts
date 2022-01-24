@@ -4,8 +4,7 @@ import { styled } from "@mui/system";
 export const CardStyled = styled(Card)`
   cursor: pointer;
   transition: 0.3s ease-in;
-  /* background: ${props => props.theme.palette.text.secondary}; */
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.5)
 `
 export const CardMediaStyled = styled(CardMedia)`
   height: 170px;

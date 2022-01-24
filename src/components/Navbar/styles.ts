@@ -10,6 +10,7 @@ export const LoginButton = styled(Button)`
   background: ${props => props.theme.palette.primary.light};
   font-size:  ${props => props.theme.spacing(1.2)};
   color:  ${props => props.theme.palette.text.primary};
+  margin-right: 5rem;
 `
 export const RegisterButton = styled(Button)`
   color:  ${props => props.theme.palette.primary.dark};

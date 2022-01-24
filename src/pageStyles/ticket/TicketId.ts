@@ -3,26 +3,33 @@ import { styled } from "@mui/system";
 
 export const Title = styled(Typography)`
   color: ${props => props.theme.palette.primary.dark};
+  padding-top: ${props => props.theme.spacing(5)};
+  font-size: ${props => props.theme.spacing(1.8)};
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
 `
 
 export const CardStyled = styled(Card)`
-  min-height: 80%;
   width: 100%;
   background: rgba(0,0,0,0.3);
+  min-height: 80vh;
+  max-height: 80vh;
 `
 
 export const Hour = styled(Typography)`
 color: ${props => props.theme.palette.primary.main};
+font-size: ${props => props.theme.spacing(1.7)};
 `
 
 export const Date = styled(Typography)`
 color: ${props => props.theme.palette.primary.light};
+font-size: ${props => props.theme.spacing(1.5)};
 `
 
 export const Locale = styled(Typography)`
 color: ${props => props.theme.palette.secondary.main};
+font-size: ${props => props.theme.spacing(1.5)};
 `
 
 export const Price = styled(Typography)`
@@ -34,11 +41,13 @@ font-weight: 900;
 export const Premiun = styled(Typography)`
 color: #EFB32A;
 font-weight: 900;
+font-size: ${props => props.theme.spacing(1.5)};
 `
 export const Standard = styled(Typography)`
 color: #23B24C;
 text-transform: uppercase;
 font-weight: 900;
+font-size: ${props => props.theme.spacing(1.5)};
 `
 
 export const InputTicket = styled(InputBase)`

@@ -72,69 +72,56 @@ const TicketId = () => {
             container
             spacing={0}
             sx={{
-              minHeight: '70vh',
+              minHeight: '50vh',
+              maxHeight: '50vh',
               maxWidth: '100%',
               justifyContent: 'center',
             }}
           >
             <Grid item xs={12} sm={12} md={6} lg={8} xl={8}>
-              <img src="/event.png" style={{height: '80%', width: '100%'}} />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
               <CardStyled square>
-                <CardContent>
-                  <Title
-                    textAlign="center"
-                    variant="h5"
-                    mt={7}
-                  >
-                    {data && data?.title}
-                  </Title>
-                  <Grid
-                    container mt={1.5}
-                    spacing={2}
-                  >
-                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Premiun><LocalAtmIcon />{'R$' + Number(data && data?.price).toFixed(2).toString().replace('.', ',')}</Premiun>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Hour><AccessTimeIcon />{moment.utc(data && data?.hour).local().format('HH:mm')}</Hour>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Date><DateRangeIcon />{moment.utc(data && data?.date).local().format('DD/MM/YYYY')}</Date>
-                    </Grid>
-                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                      <Standard><ViewQuiltIcon />{data?.ticketCategory && data.ticketCategory.title}</Standard>
-                    </Grid>
-                  </Grid>
-                  <form onSubmit={handleSubmit(handleAmount)}>
-                    <InputTicket
-                      placeholder="quantidade"
-                      type="number"
-                      defaultValue={1}
-                      {...register("amount", {required: 'Quantidade não pode ser nula'})}
-                    />
-                    <BuyButton
-                      variant="contained"
-                      onClick={handleOpen}
-                      type="submit"
-                    >
-                      Comprar
-                    </BuyButton>
-                  </form>
-                </CardContent>
+                <img src="/event.jpeg" style={{width: '100%'}} />
               </CardStyled>
             </Grid>
-          </Grid>
-          <Grid container mb={5}>
-            <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-              <CardStyled>
-                <CardContent>
-                  <Title variant="h6" textAlign="center">Descrição</Title>
-                  <Description>
-                    {data?.description}
-                  </Description>
-                </CardContent>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+                <CardStyled square>
+                  <CardContent>
+                    <Title>{data && data?.title}</Title>
+                    <Grid
+                      container mt={1.5}
+                      spacing={2}
+                    >
+                      <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Premiun>{'R$' + Number(data && data?.price).toFixed(2).toString().replace('.', ',')}</Premiun>
+                      </Grid>
+                      <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Hour>{moment.utc(data && data?.hour).local().format('HH:mm')}</Hour>
+                      </Grid>
+                      <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Date>{moment.utc(data && data?.date).local().format('DD/MM/YYYY')}</Date>
+                      </Grid>
+                      <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                        <Standard>{data?.ticketCategory && data.ticketCategory.title}</Standard>
+                      </Grid>
+                      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                        <form onSubmit={handleSubmit(handleAmount)}>
+                          <InputTicket
+                            placeholder="quantidade"
+                            type="number"
+                            defaultValue={1}
+                            {...register("amount", {required: 'Quantidade não pode ser nula'})}
+                          />
+                          <BuyButton
+                            variant="contained"
+                            onClick={handleOpen}
+                            type="submit"
+                          >
+                            Comprar
+                          </BuyButton>
+                        </form>
+                      </Grid>
+                    </Grid>
+                  </CardContent>
               </CardStyled>
             </Grid>
           </Grid>
