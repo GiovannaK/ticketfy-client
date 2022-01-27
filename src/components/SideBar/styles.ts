@@ -5,6 +5,7 @@ export const SideBarContainer = styled(Drawer)`
   .MuiDrawer-paper{
     width: 80px;
     background: ${props => props.theme.palette.secondary.light};
+    z-index: 20;
   }
 `;
 

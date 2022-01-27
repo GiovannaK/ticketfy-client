@@ -14,10 +14,10 @@ export const SideBar = () => {
 
   return (
     <>
-    <Hidden mdUp>
+    <Hidden lgUp>
       <BottomBar />
     </Hidden>
-    <Hidden mdDown>
+    <Hidden lgDown>
       <>
       {userProfile?.id && (
         <SideBarContainer

@@ -15,14 +15,14 @@ export const Input = styled(InputBase)`
 export const CardStyled = styled(Card)`
   background: rgba(0,0,0,0.3);
   width: 100%;
-  height: 100%;
+  min-height: 80vh
 `
 
 export const Title = styled(Typography)`
   color: ${props => props.theme.palette.primary.main};
   text-transform: uppercase;
-  padding-top: ${props => props.theme.spacing(5)};
-  padding-bottom: ${props => props.theme.spacing(3)};
+  padding-top: ${props => props.theme.spacing(7)};
+  padding-bottom: ${props => props.theme.spacing(7)};
 `
 
 export const LoginButton = styled(Button)`

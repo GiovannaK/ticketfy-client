@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react'
-import { DashboardTab } from '../components/DashboardTab';
 import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { PaperComponent } from '../components/PaperComponent';
@@ -18,7 +17,6 @@ const Seller = () => {
       <SideBar />
       <Layout title="seller dashboard">
         <Box mt={1} mb={3}>
-          <DashboardTab />
           <Grid container
             mt={2}
             spacing={2}

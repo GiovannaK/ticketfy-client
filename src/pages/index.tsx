@@ -11,6 +11,7 @@ import { useQuery } from 'react-query';
 import { api } from '../services/api';
 import { ITicket } from '../interfaces/ITickets';
 import { CardCategory } from '../components/CardCategory';
+import { BestSellers } from '../components/BestSellers';
 
 const getTickets = async () => {
   const tickets = await api.get<ITicket[]>('/ticket')
@@ -33,8 +34,9 @@ export default function Index() {
       <Navbar />
       <SideBar />
       <Layout title="home">
+        <BestSellers />
         <CardCategory />
-        <Box mt={5} mb={5}>
+        <Box mt={5} mb={20}>
           <Grid
             container
             spacing={2}

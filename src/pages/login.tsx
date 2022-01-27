@@ -86,17 +86,6 @@ const Login = () => {
                     <ActionLinks>Não tem uma conta?</ActionLinks>
                   </Link>
                 </CardContent>
-                <Hidden lgDown>
-                  <CardContent sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <img src="svg_login.svg" style={{
-                        maxWidth: '50%',
-                    }}/>
-                  </CardContent>
-                </Hidden>
               </CardStyled>
             </Grid>
           </Grid>

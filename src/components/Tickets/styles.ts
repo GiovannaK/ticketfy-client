@@ -4,9 +4,9 @@ import { styled } from "@mui/system";
 export const CardTicket = styled(Card)`
   background: linear-gradient(180deg, rgba(93,2,113,1) 0%, rgba(0,112,120,0.742734593837535) 100%);
   cursor: pointer;
-  transition: 0.7s ease-in-out;
+  transition: 0.3s ease-in-out;
   &:hover{
-    background: rgba(0,0,0,0.2);
+    opacity: 0.7
   }
 `
 export const TitleTicket = styled(Typography)`
