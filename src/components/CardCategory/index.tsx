@@ -23,8 +23,13 @@ export const CardCategory = () => {
   }
   return (
     <Box mt={3}>
-      <Grid container>
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={11} sm={11} md={11} lg={11} xl={11}>
           <Swiper spaceBetween={25} navigation={true} breakpoints={{
             640: {
               slidesPerView: 1,

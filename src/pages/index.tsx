@@ -46,7 +46,7 @@ export default function Index() {
           >
             {data && data?.map((ticket) => (
               <Link href={`/ticket/${ticket.sellerId.id}/${ticket.id}`}>
-                <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+                <Grid item xs={11} sm={5.5} md={3.7} lg={2.75} xl={2.75}>
                   <CardComponent ticket={ticket} />
                 </Grid>
               </Link>

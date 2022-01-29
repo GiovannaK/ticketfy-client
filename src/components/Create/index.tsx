@@ -225,6 +225,7 @@ export const CreateTicketForm = (): JSX.Element => {
                     <LocalizationProvider dateAdapter={AdapterDateFns} locale={brLocale}>
                       <MobileDatePicker
                         value={date}
+                        minDate={new Date()}
                         onChange={(newValue) => {
                           setDate(newValue);
                           setValue('date', date, { shouldValidate: true, shouldDirty: true});
