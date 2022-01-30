@@ -11,6 +11,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
   BuyButton,
   CardStyled, Date,
+  Description,
+  DescriptionContent,
   Finished,
   Hour,
   InputTicket,
@@ -68,7 +70,7 @@ const TicketId = () => {
       <Navbar />
       <SideBar />
       <Layout title="event name">
-        <Box mt={3}>
+        <Box mt={3} mb={15}>
           <Grid
             container
             spacing={0}
@@ -88,12 +90,12 @@ const TicketId = () => {
               </Card>
             </Grid>
             <Grid item xs={12} sm={10} md={10} lg={10} xl={10}>
-              <CardStyled square sx={{background: 'transparent', maxHeight: '60vh'}}>
+              <CardStyled square sx={{background: 'transparent', height: '50vh', maxHeight: '50vh', overflowY: 'auto'}}>
                 <Grid
                   container
                 >
                   <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <CardStyled square>
+                    <CardStyled square sx={{minHeight: '100%'}}>
                       <CardContent>
                         <Grid
                           container
@@ -142,7 +144,10 @@ const TicketId = () => {
                   <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
                     <CardStyled square>
                       <CardContent>
-                        slsdk
+                        <Description>DESCRIÇÃO</Description>
+                        <DescriptionContent>
+                          {data && data?.description}
+                        </DescriptionContent>
                       </CardContent>
                     </CardStyled>
                   </Grid>

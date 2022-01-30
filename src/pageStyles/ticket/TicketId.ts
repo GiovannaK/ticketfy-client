@@ -24,6 +24,13 @@ export const Hour = styled(Typography)`
 color: ${props => props.theme.palette.primary.main};
 font-size: ${props => props.theme.spacing(1.7)};
 `
+export const Description = styled(Typography)`
+padding-top: ${props => props.theme.spacing(1.5)};
+color: ${props => props.theme.palette.primary.main};
+font-size: ${props => props.theme.spacing(1.4)};
+text-align: center;
+`
+
 export const Finished = styled(Typography)`
 color: red;
 font-size: ${props => props.theme.spacing(1.7)};
@@ -73,9 +80,10 @@ export const BuyButton = styled(Button)`
   padding: ${props => props.theme.spacing(0.7)};
 `
 
-export const Description = styled(Typography)`
-  margin-top: ${props => props.theme.spacing(1.5)};
-  font-size: ${props => props.theme.spacing(1.3)};
+export const DescriptionContent = styled(Typography)`
+  padding-top: ${props => props.theme.spacing(1.5)};
+  font-size: ${props => props.theme.spacing(1.2)};
+  padding-bottom: ${props => props.theme.spacing(1.5)};
 `
 
 
