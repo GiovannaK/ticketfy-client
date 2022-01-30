@@ -36,7 +36,7 @@ export const ModalCheckout = ({open, handleClose, total}: IModalCheckout) => {
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                   <Text variant="h5" textAlign="center">
-                    R$ {total}
+                    {'R$' + Number(total).toFixed(2).toString().replace('.', ',')}
                   </Text>
                 </Grid>
               </Grid>

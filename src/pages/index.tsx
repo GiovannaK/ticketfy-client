@@ -45,11 +45,12 @@ export default function Index() {
             alignItems="center"
           >
             {data && data?.map((ticket) => (
-              <Link href={`/ticket/${ticket.sellerId.id}/${ticket.id}`}>
-                <Grid item xs={11} sm={5.5} md={3.7} lg={2.75} xl={2.75}>
-                  <CardComponent ticket={ticket} />
-                </Grid>
-              </Link>
+              ticket.isActive ?
+                (<Link href={`/ticket/${ticket.sellerId.id}/${ticket.id}`}>
+                  <Grid item xs={11} sm={5.5} md={3.7} lg={2.75} xl={2.75}>
+                    <CardComponent ticket={ticket} />
+                  </Grid>
+                </Link>) : null
             ))}
           </Grid>
         </Box>

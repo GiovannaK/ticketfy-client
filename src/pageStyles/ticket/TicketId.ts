@@ -1,24 +1,31 @@
-import { Card, InputBase, Typography, Button } from "@mui/material";
+import { Card, InputBase, Typography, Button, Avatar } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const Title = styled(Typography)`
   color: ${props => props.theme.palette.primary.dark};
-  padding-top: ${props => props.theme.spacing(5)};
+  padding-top: ${props => props.theme.spacing(1.5)};
   font-size: ${props => props.theme.spacing(1.8)};
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
 `
+export const AvatarStyled = styled(Avatar)`
+  position: absolute;
+  top: 50%; right: 50%;
+  transform: translate(50%,-50%);
+`
 
 export const CardStyled = styled(Card)`
   width: 100%;
   background: rgba(0,0,0,0.3);
-  min-height: 80vh;
-  max-height: 80vh;
 `
 
 export const Hour = styled(Typography)`
 color: ${props => props.theme.palette.primary.main};
+font-size: ${props => props.theme.spacing(1.7)};
+`
+export const Finished = styled(Typography)`
+color: red;
 font-size: ${props => props.theme.spacing(1.7)};
 `
 
