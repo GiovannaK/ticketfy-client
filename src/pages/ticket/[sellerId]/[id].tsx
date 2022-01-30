@@ -1,24 +1,18 @@
-import { Grid, Card, CardContent, CircularProgress, CardMedia, Icon } from '@mui/material'
+import { Grid, Card, CardContent, CircularProgress, CardMedia, Icon, Avatar } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { Layout } from '../../../components/Layout'
 import { Navbar } from '../../../components/Navbar'
 import { PaperComponent } from '../../../components/PaperComponent'
-import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
   BuyButton,
   CardStyled, Date,
   Description,
   DescriptionContent,
-  Finished,
   Hour,
   InputTicket,
-  Premiun, Price, Standard, Title
+  Premiun, Price, Standard, Subtitle, Title
 } from '../../../pageStyles/ticket/TicketId'
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ModalCheckout } from '../../../components/ModalCheckout'
 import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
@@ -57,7 +51,7 @@ const TicketId = () => {
     }
   }
 
-
+  console.log('DATA', data)
   if(error){
     console.log(error)
   }
@@ -79,7 +73,7 @@ const TicketId = () => {
               zIndex: -2
             }}
           >
-            <Grid item xs={12} sm={10} md={10} lg={10} xl={10}>
+            <Grid item xs={11} sm={11} md={11} lg={11} xl={11}>
               <Card>
                 <CardMedia image="../../event.png" sx={{
                     minWidth: '100%',
@@ -89,13 +83,13 @@ const TicketId = () => {
                 />
               </Card>
             </Grid>
-            <Grid item xs={12} sm={10} md={10} lg={10} xl={10}>
+            <Grid item xs={11} sm={11} md={11} lg={11} xl={11}>
               <CardStyled square sx={{background: 'transparent', height: '50vh', maxHeight: '50vh', overflowY: 'auto'}}>
                 <Grid
                   container
                 >
                   <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <CardStyled square sx={{minHeight: '100%'}}>
+                    <CardStyled square sx={{minHeight: '50vh'}}>
                       <CardContent>
                         <Grid
                           container
@@ -142,12 +136,27 @@ const TicketId = () => {
                     </CardStyled>
                   </Grid>
                   <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <CardStyled square>
+                    <CardStyled square  sx={{minHeight: '50vh'}}>
                       <CardContent>
-                        <Description>DESCRIÇÃO</Description>
-                        <DescriptionContent>
-                          {data && data?.description}
-                        </DescriptionContent>
+                        <Description>INFORMAÇÕES DO VENDEDOR</Description>
+                        <Box mt={4.5}>
+                          <Grid
+                            container
+                            spacing={2}
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            sx={{textAlign: 'center'}}
+                          >
+                            <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                              <Avatar sx={{width: '70%', height: '70%'}}>
+                              </Avatar>
+                            </Grid>
+                            <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                              <Subtitle>{data?.sellerId && data.sellerId.fullName}</Subtitle>
+                            </Grid>
+                          </Grid>
+                        </Box>
                       </CardContent>
                     </CardStyled>
                   </Grid>

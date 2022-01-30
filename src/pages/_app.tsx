@@ -11,7 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ProfileProvider } from '../context/ProfileContext';
 import "swiper/css";
-import "swiper/css/navigation"
+import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
 import SwiperCore, {
 	Navigation,Autoplay
 } from 'swiper';

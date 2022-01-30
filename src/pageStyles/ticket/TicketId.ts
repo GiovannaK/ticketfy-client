@@ -27,13 +27,14 @@ font-size: ${props => props.theme.spacing(1.7)};
 export const Description = styled(Typography)`
 padding-top: ${props => props.theme.spacing(1.5)};
 color: ${props => props.theme.palette.primary.main};
-font-size: ${props => props.theme.spacing(1.4)};
+font-size: ${props => props.theme.spacing(1.6)};
+font-weight: bold;
 text-align: center;
 `
 
-export const Finished = styled(Typography)`
-color: red;
-font-size: ${props => props.theme.spacing(1.7)};
+export const Subtitle = styled(Typography)`
+color: ${props => props.theme.palette.primary.light};
+font-size: ${props => props.theme.spacing(1.8)};
 `
 
 export const Date = styled(Typography)`
