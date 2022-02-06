@@ -35,6 +35,7 @@ const TicketId = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [amount, setAmount] = React.useState(0)
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [total, setTotal] = React.useState(0)
   const router = useRouter()
@@ -46,12 +47,12 @@ const TicketId = () => {
 
   const handleAmount = (amount: TicketIdType) => {
     const parseAmount = parseInt(amount.amount);
+    setAmount(parseAmount)
     if(data){
       setTotal(data.price * parseAmount)
     }
   }
 
-  console.log('DATA', data)
   if(error){
     console.log(error)
   }
@@ -165,7 +166,7 @@ const TicketId = () => {
             </Grid>
           </Grid>
         </Box>
-        <ModalCheckout open={open} handleClose={handleClose} total={total}/>
+        <ModalCheckout open={open} handleClose={handleClose} total={total} quantity={amount}/>
       </Layout>
     </PaperComponent>
   )

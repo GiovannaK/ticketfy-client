@@ -29,9 +29,11 @@ export const Profile = ({userProfile}: ProfileContextType) => {
     }
   )
 
-  if(data){
-    window.open(data.data.url, '_blank')
-  }
+  React.useEffect(() => {
+    if(data){
+      window.location.href = data.data.url
+    }
+  }, [data?.data.url])
 
   if(error){
     toast.error('Não foi possível redirecionar, verifique sua conexão')

@@ -1,21 +1,74 @@
 import { Card, CardContent, Grid } from '@mui/material'
 import React from 'react'
 import { CheckoutButton, ModalStyled, SubTitle, Text, TitleCheckout } from './styles'
-import { CardElement } from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useRouter } from 'next/router';
+import {useMutation} from 'react-query'
+import { toast } from 'react-toastify';
+import { api } from '../../services/api';
 
 interface IModalCheckout {
-  open: boolean;
-  handleClose: () => void;
+  open: boolean
+  handleClose: () => void
   total: number
+  quantity: number
 }
 
-export const ModalCheckout = ({open, handleClose, total}: IModalCheckout) => {
+type PostPayment = {
+  paymentMethodId: Promise<string | undefined>
+  quantity: number
+  ticketsOrder: any
+}
+
+
+export const ModalCheckout = ({open, handleClose, total, quantity}: IModalCheckout) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const router = useRouter();
+  const {id: ticketsOrder} = router.query as any
+
+  const postPayment = async (sendPaymentData: PostPayment) => {
+    return await api.post<PostPayment>('/order', sendPaymentData);
+  }
+
+  const handleSubmit = async () => {
+    const cardElement = elements?.getElement(CardElement);
+
+    if (!stripe || !elements || !cardElement) {
+      return;
+    }
+    const stripeResponse = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement
+    });
+    const { error, paymentMethod } = stripeResponse;
+
+    if (error || !paymentMethod) {
+      console.log('EEEE', error)
+      return;
+    }
+    const paymentMethodId = paymentMethod.id;
+    return paymentMethodId
+  }
+
+  const {isLoading, mutate} = useMutation(postPayment, {
+    onSuccess: () => {
+      toast.info('Pagamento está sendo processado!')
+    },
+    onError: (err) => {
+      toast.error('Não foi possível processar pagamento!')
+    }
+  })
+  const onSubmit = (e: React.MouseEvent<HTMLElement>, quantity: number, ticketsOrder: any) => {
+    const paymentMethodId = handleSubmit()
+    const sendPaymentData = {paymentMethodId, quantity, ticketsOrder}
+    mutate(sendPaymentData)
+  }
+
   return (
     <ModalStyled
       open={open}
       onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
     >
       <Grid container sx={{justifyContent: 'center'}}>
         <Grid item xs={12} sm={12} md={10} lg={6} xl={6}>
@@ -41,7 +94,7 @@ export const ModalCheckout = ({open, handleClose, total}: IModalCheckout) => {
                 </Grid>
               </Grid>
               <CardElement />
-              <CheckoutButton variant="outlined">Pagar</CheckoutButton>
+              <CheckoutButton onClick={(e) => onSubmit(e, quantity, ticketsOrder)} variant="outlined">Pagar</CheckoutButton>
             </CardContent>
           </Card>
         </Grid>
