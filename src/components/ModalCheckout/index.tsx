@@ -1,10 +1,14 @@
-import { Card, CardContent, Grid } from '@mui/material'
-import React from 'react'
-import { CheckoutButton, ModalStyled, SubTitle, Text, TitleCheckout } from './styles'
+/* eslint-disable no-shadow */
+/* eslint-disable consistent-return */
+import { Card, CardContent, Grid } from '@mui/material';
+import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/router';
-import {useMutation} from 'react-query'
+import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
+import {
+  CheckoutButton, ModalStyled, SubTitle, Text, TitleCheckout,
+} from './styles';
 import { api } from '../../services/api';
 
 interface IModalCheckout {
@@ -20,16 +24,15 @@ type PostPayment = {
   ticketsOrder: any
 }
 
-
-export const ModalCheckout = ({open, handleClose, total, quantity}: IModalCheckout) => {
+export const ModalCheckout = ({
+  open, handleClose, total, quantity,
+}: IModalCheckout) => {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
-  const {id: ticketsOrder} = router.query as any
+  const { id: ticketsOrder } = router.query as any;
 
-  const postPayment = async (sendPaymentData: PostPayment) => {
-    return await api.post<PostPayment>('/order', sendPaymentData);
-  }
+  const postPayment = async (sendPaymentData: PostPayment) => api.post<PostPayment>('/order', sendPaymentData);
 
   const handleSubmit = async () => {
     const cardElement = elements?.getElement(CardElement);
@@ -39,40 +42,40 @@ export const ModalCheckout = ({open, handleClose, total, quantity}: IModalChecko
     }
     const stripeResponse = await stripe.createPaymentMethod({
       type: 'card',
-      card: cardElement
+      card: cardElement,
     });
     const { error, paymentMethod } = stripeResponse;
 
     if (error || !paymentMethod) {
-      console.log('EEEE', error)
       return;
     }
     const paymentMethodId = paymentMethod.id;
-    return paymentMethodId
-  }
+    return paymentMethodId;
+  };
 
-  const {isLoading, mutate} = useMutation(postPayment, {
+  const { isLoading, mutate } = useMutation(postPayment, {
     onSuccess: () => {
-      toast.info('Pagamento está sendo processado!')
+      toast.info('Pagamento está sendo processado!');
     },
-    onError: (err) => {
-      toast.error('Não foi possível processar pagamento!')
-    }
-  })
+    onError: () => {
+      toast.error('Não foi possível processar pagamento!');
+    },
+  });
   const onSubmit = (e: React.MouseEvent<HTMLElement>, quantity: number, ticketsOrder: any) => {
-    const paymentMethodId = handleSubmit()
-    const sendPaymentData = {paymentMethodId, quantity, ticketsOrder}
-    mutate(sendPaymentData)
-  }
+    const paymentMethodId = handleSubmit();
+    console.log('PAY', paymentMethodId);
+    const sendPaymentData = { paymentMethodId, quantity, ticketsOrder };
+    mutate(sendPaymentData);
+  };
 
   return (
     <ModalStyled
       open={open}
       onClose={handleClose}
     >
-      <Grid container sx={{justifyContent: 'center'}}>
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid item xs={12} sm={12} md={10} lg={6} xl={6}>
-          <Card sx={{background: 'rgba(255, 255, 255, 0.8)'}}>
+          <Card sx={{ background: 'rgba(255, 255, 255, 0.8)' }}>
             <CardContent>
               <TitleCheckout textAlign="center">
                 Pagamento
@@ -94,11 +97,17 @@ export const ModalCheckout = ({open, handleClose, total, quantity}: IModalChecko
                 </Grid>
               </Grid>
               <CardElement />
-              <CheckoutButton onClick={(e) => onSubmit(e, quantity, ticketsOrder)} variant="outlined">Pagar</CheckoutButton>
+              <CheckoutButton
+                onClick={(e) => onSubmit(e, quantity, ticketsOrder)}
+                variant="outlined"
+                disabled={isLoading}
+              >
+                Pagar
+              </CheckoutButton>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
     </ModalStyled>
-  )
-}
+  );
+};

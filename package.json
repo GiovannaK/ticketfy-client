@@ -21,6 +21,7 @@
     "@stripe/stripe-js": "^1.20.3",
     "@swiper/core": "^0.0.21",
     "@types/js-cookie": "^3.0.1",
+    "@types/json-schema": "^7.0.9",
     "@types/swiper": "^5.4.3",
     "axios": "^0.24.0",
     "date-fns": "^2.25.0",
@@ -39,9 +40,18 @@
     "swiper": "^7.2.0"
   },
   "devDependencies": {
+    "@types/node": "^17.0.17",
     "@types/react": "latest",
     "@types/styled-components": "latest",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
     "babel-plugin-styled-components": "latest",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "typescript": "latest"
   }
 }

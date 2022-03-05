@@ -1,26 +1,33 @@
-import React from 'react'
-import Link from 'next/link'
-import { ProfileContext } from '../../context/ProfileContext';
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+import React from 'react';
+import Link from 'next/link';
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import CreateIcon from '@mui/icons-material/Create';
+import { ProfileContext } from '../../context/ProfileContext';
 
-export const BottomBar = () => {
+export function BottomBar() {
   const { userProfile } = React.useContext(ProfileContext);
   return (
     <>
       {userProfile?.id && (
 
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <Paper
+          sx={{
+            position: 'fixed', bottom: 0, left: 0, right: 0,
+          }}
+          elevation={3}
+        >
           <BottomNavigation
             showLabels
           >
             <Link href="/">
-              <BottomNavigationAction  icon={<ConfirmationNumberIcon color="primary"/>} />
+              <BottomNavigationAction icon={<ConfirmationNumberIcon color="primary" />} />
             </Link>
             <Link href={userProfile?.role === 'user' ? '/user' : '/seller'}>
-              <BottomNavigationAction icon={<DashboardIcon color="primary"/>} />
+              <BottomNavigationAction icon={<DashboardIcon color="primary" />} />
             </Link>
             {userProfile?.role === 'seller' && (
               <Link href="/create">
@@ -31,5 +38,5 @@ export const BottomBar = () => {
         </Paper>
       )}
     </>
-  )
+  );
 }
