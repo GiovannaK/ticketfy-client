@@ -19,7 +19,7 @@ interface IModalCheckout {
 }
 
 type PostPayment = {
-  paymentMethodId: Promise<string | undefined>
+  paymentMethodId: string | undefined
   quantity: number
   ticketsOrder: any
 }
@@ -61,9 +61,12 @@ export const ModalCheckout = ({
       toast.error('Não foi possível processar pagamento!');
     },
   });
-  const onSubmit = (e: React.MouseEvent<HTMLElement>, quantity: number, ticketsOrder: any) => {
-    const paymentMethodId = handleSubmit();
-    console.log('PAY', paymentMethodId);
+  const onSubmit = async (
+    e: React.MouseEvent<HTMLElement>,
+    quantity: number,
+    ticketsOrder: any,
+  ) => {
+    const paymentMethodId = await handleSubmit();
     const sendPaymentData = { paymentMethodId, quantity, ticketsOrder };
     mutate(sendPaymentData);
   };
