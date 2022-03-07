@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import {
@@ -9,6 +10,10 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
 import moment from 'moment';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Layout } from '../../../components/Layout';
 import { Navbar } from '../../../components/Navbar';
 import { PaperComponent } from '../../../components/PaperComponent';
@@ -58,7 +63,7 @@ function TicketId() {
   };
 
   if (error) {
-    console.log(error);
+    return;
   }
 
   if (isLoading) {
@@ -84,7 +89,7 @@ function TicketId() {
                   image="../../event.png"
                   sx={{
                     minWidth: '100%',
-                    height: 350,
+                    height: '70vh',
                     position: 'relative',
                   }}
                 />
@@ -112,19 +117,36 @@ function TicketId() {
                           sx={{ textAlign: 'center' }}
                         >
                           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                            <Toolbar />
                             <Title>{data && data?.title}</Title>
                           </Grid>
                           <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Premiun>{'R$' + Number(data && data?.price).toFixed(2).toString().replace('.', ',')}</Premiun>
+                            <Premiun>
+                              <LocalAtmIcon />
+                              {' '}
+                              {'R$' + Number(data && data?.price).toFixed(2).toString().replace('.', ',')}
+                            </Premiun>
                           </Grid>
                           <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Hour>{moment.utc(data && data?.hour).local().format('HH:mm')}</Hour>
+                            <Hour>
+                              <AccessTimeIcon />
+                              {' '}
+                              {moment.utc(data && data?.hour).local().format('HH:mm')}
+                            </Hour>
                           </Grid>
                           <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Date>{moment.utc(data && data?.date).local().format('DD/MM/YYYY')}</Date>
+                            <Date>
+                              <DateRangeIcon />
+                              {' '}
+                              {moment.utc(data && data?.date).local().format('DD/MM/YYYY')}
+                            </Date>
                           </Grid>
                           <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                            <Standard>{data?.ticketCategory && data.ticketCategory.title}</Standard>
+                            <Standard>
+                              <DashboardIcon />
+                              {' '}
+                              {data?.ticketCategory && data.ticketCategory.title}
+                            </Standard>
                           </Grid>
                           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                             <form onSubmit={handleSubmit(handleAmount)}>
